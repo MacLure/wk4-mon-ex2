@@ -54,7 +54,12 @@ class CRM
     puts "Enter note:"
     print "> "
     note = gets.chomp
-    contact = Contact.create(first_name, last_name, email, note)
+    contact = Contact.create(
+      first_name: first_name,
+      last_name:  last_name,
+      email:      email,
+      note:       note
+    )
     puts "-------------"
     puts "#{first_name} #{last_name} added."
     puts "-------------"
@@ -90,25 +95,25 @@ class CRM
   def change_first_name(id)
     puts "Current first name: #{Contact.find(id).first_name}"
     value = get_modify_value
-    Contact.find(id).first_name=(value)
+    Contact.find(id).update({first_name: value})
   end
 
   def change_last_name(id)
     puts "Current last name: #{Contact.find(id).last_name}"
     value = get_modify_value
-    Contact.find(id).last_name=(value)
+    Contact.find(id).update({late_name: value})
   end
 
   def change_email(id)
     puts "Current email: #{Contact.find(id).email}"
     value = get_modify_value
-    Contact.find(id).email=(value)
+    Contact.find(id).update({email_name: value})
   end
 
   def change_note(id)
     puts "Current note name: #{Contact.find(id).note}"
     value = get_modify_value
-    Contact.find(id).note=(value)
+    Contact.find(id).update({note_name: value})
   end
 
   def get_modify_value
@@ -144,7 +149,7 @@ class CRM
   def display_all_contacts
     puts "-------------"
     puts "Contacts:"
-    puts Contact.contacts
+    puts Contact.all
     puts "-------------"
   end
 
@@ -192,7 +197,7 @@ class CRM
     value = get_search_value
     puts "-------------"
     puts "Results:"
-    puts Contact.find_by(attribute, value)
+    puts Contact.find_by({attribute => value})
     puts "-------------"
 
   end
@@ -203,6 +208,6 @@ class CRM
     call_search_by_option(user_selected)
 
   end
-
-
 end
+
+

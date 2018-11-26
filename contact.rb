@@ -1,3 +1,5 @@
+gem 'activerecord', '=4.2.10'
+
 require "./crm.rb"
 require 'active_record'
 require 'mini_record'
